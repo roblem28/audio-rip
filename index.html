@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Transcription</title>
+    <style>
+        .drop-zone {
+            width: 100%;
+            max-width: 600px;
+            height: 200px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 50px auto;
+            font-family: Arial, sans-serif;
+            color: #ccc;
+        }
+        .drop-zone.dragover {
+            border-color: #333;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="drop-zone" id="drop-zone">
+        Drag and drop audio or video files here
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
