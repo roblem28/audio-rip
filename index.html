@@ -5,30 +5,149 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Transcription</title>
     <style>
+        :root {
+            color-scheme: light dark;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b1221;
+            color: #f5f6fa;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 32px 16px 16px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            color: #d0d6e3;
+            margin: 0;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 16px 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
         .drop-zone {
             width: 100%;
-            max-width: 600px;
-            height: 200px;
-            border: 2px dashed #ccc;
-            border-radius: 10px;
+            min-height: 180px;
+            border: 2px dashed rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            margin: 50px auto;
-            font-family: Arial, sans-serif;
-            color: #ccc;
+            color: #c9d1e5;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
         }
+
         .drop-zone.dragover {
-            border-color: #333;
-            color: #333;
+            border-color: #7c9dff;
+            color: #e8edff;
+            background: rgba(124, 157, 255, 0.08);
+        }
+
+        .prompt-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .prompt-header h2 {
+            margin: 0;
+        }
+
+        .prompt-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .prompt-actions button {
+            background: #7c9dff;
+            color: #0b1221;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.2s ease;
+        }
+
+        .prompt-actions button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(124, 157, 255, 0.35);
+        }
+
+        .prompt-actions button:active {
+            transform: translateY(0);
+        }
+
+        .prompt-text {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 12px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            font-size: 14px;
+            color: #e8edff;
+        }
+
+        .status {
+            font-size: 13px;
+            color: #9fb3d4;
+            margin-left: 8px;
         }
     </style>
 </head>
 <body>
-    <div class="drop-zone" id="drop-zone">
-        Drag and drop audio or video files here
-    </div>
+    <header>
+        <h1>Audio Rip Toolkit</h1>
+        <p class="subtitle">Drop audio/video, then paste the refined MelodyScribe prompt to push for better transcriptions.</p>
+    </header>
+    <main>
+        <section class="card">
+            <div class="drop-zone" id="drop-zone">
+                Drag and drop audio or video files here
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="prompt-header">
+                <h2>Refined MelodyScribe Prompt</h2>
+                <div class="prompt-actions">
+                    <button id="copy-prompt" type="button">Copy prompt</button>
+                    <span class="status" id="copy-status" aria-live="polite"></span>
+                </div>
+            </div>
+            <pre class="prompt-text" id="prompt-text"></pre>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
